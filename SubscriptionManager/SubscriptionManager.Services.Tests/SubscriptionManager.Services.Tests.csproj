@@ -12,4 +12,13 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mocks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SubscriptionManager.Core\SubscriptionManager.Core.csproj" />
+    <ProjectReference Include="..\SubscriptionManager.Services\SubscriptionManager.Services.csproj" />
+  </ItemGroup>
+
 </Project>
