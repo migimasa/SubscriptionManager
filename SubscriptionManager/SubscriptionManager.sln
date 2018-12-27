@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriptionManager.DAL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriptionManager.Services.Tests", "SubscriptionManager.Services.Tests\SubscriptionManager.Services.Tests.csproj", "{D936D800-21BA-4D4E-9804-2824609D46DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriptionManager.Core", "SubscriptionManager.Core\SubscriptionManager.Core.csproj", "{5A216C5A-5EC6-41D4-B0E1-5120070EB5FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D936D800-21BA-4D4E-9804-2824609D46DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D936D800-21BA-4D4E-9804-2824609D46DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D936D800-21BA-4D4E-9804-2824609D46DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A216C5A-5EC6-41D4-B0E1-5120070EB5FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A216C5A-5EC6-41D4-B0E1-5120070EB5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A216C5A-5EC6-41D4-B0E1-5120070EB5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A216C5A-5EC6-41D4-B0E1-5120070EB5FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
