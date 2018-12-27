@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SubscriptionManager.Core\SubscriptionManager.Core.csproj" />
+  </ItemGroup>
+
 </Project>
