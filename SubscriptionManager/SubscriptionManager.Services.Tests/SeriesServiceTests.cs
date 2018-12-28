@@ -1,6 +1,8 @@
 ﻿using SubscriptionManager.Core.DTO;
+using SubscriptionManager.DAL.Interfaces;
 using SubscriptionManager.Services.Implementations;
 using SubscriptionManager.Services.Interfaces;
+using SubscriptionManager.Services.Tests.Mocks;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +24,7 @@ namespace SubscriptionManager.Services.Tests
         public async Task GetAllComicBookSeries()
         {
             ISeriesService service = new SeriesService();
+            ISeriesDataAccess dataAccess = new MockSeriesDataAccess();
 
             IEnumerable<ComicBookSeries> issues = service.GetIssues();
         }
