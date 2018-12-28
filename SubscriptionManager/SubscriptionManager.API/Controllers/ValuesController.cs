@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.KeyVault;
+using Microsoft.Azure.KeyVault.Models;
+using Microsoft.Azure.Services.AppAuthentication;
 
 namespace SubscriptionManager.API.Controllers
 {
@@ -19,9 +22,50 @@ namespace SubscriptionManager.API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<string>> GetAsync(int id)
         {
-            return "value";
+            string val = "value";
+            int retries = 0;
+            bool retry = false;
+
+            try
+            {
+                AzureServiceTokenProvider azureServiceTokenProvider = new AzureServiceTokenProvider();
+                KeyVaultClient keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
+                var secret = await keyVaultClient.GetSecretAsync("https://JLM-Demo-Vault.vault.azure.net/secrets/AppSecret").ConfigureAwait(false);
+                val = secret.Value;
+
+                do
+                {
+                    long waitTime = Math.Min(getWaitTime(retries), 2000000);
+                    secret = await keyVaultClient.GetSecretAsync("https://JLM-Demo-Vault.vault.azure.net/secrets/AppSecret").ConfigureAwait(false);
+                    retry = false;
+                }
+                while (retry && retries++ < 10);
+            }
+            catch (KeyVaultErrorException keyVaultException)
+            {
+                val = keyVaultException.Message;
+                if ((int)keyVaultException.Response.StatusCode == 429)
+                    retry = true;
+            }
+
+
+            return val;
+        }
+
+        private static long getWaitTime(int retryCount)
+        {
+            long waitTime = ((long)Math.Pow(2, retryCount) * 100L);
+            return waitTime;
+        }
+
+        public async Task<string> GetAccessTokenAsync()
+        {
+            var azureServiceTokenProvider = new AzureServiceTokenProvider();
+
+            string accessToken = await azureServiceTokenProvider.GetAccessTokenAsync("https://vault.azure.net");
+            return accessToken;
         }
 
         // POST api/values
