@@ -4,7 +4,8 @@ using System.Text;
 
 namespace SubscriptionManager.DAL.Interfaces
 {
-    interface ISeriesDataAccess
+    public interface ISeriesDataAccess
     {
+
     }
 }
